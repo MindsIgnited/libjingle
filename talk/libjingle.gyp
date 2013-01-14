@@ -245,6 +245,27 @@
             },
           },
         }],
+        ['OS=="ios"', {
+          'sources': [
+            'base/maccocoathreadhelper.mm',
+            'base/scoped_autorelease_pool.mm',
+          ],
+          'link_settings': {
+            'libraries': [
+              '<(DEPTH)/third_party/ios-openssl/lib/libcrypto.a',
+              '<(DEPTH)/third_party/ios-openssl/lib/libssl.a',
+            ],
+            'xcode_settings': {
+              'OTHER_LDFLAGS': [
+                '-framework Carbon',
+                '-framework Cocoa',
+                '-framework IOKit',
+                '-framework Security',
+                '-framework SystemConfiguration',
+              ],
+            },
+          },
+        }],
         ['OS=="win"', {
           'sources': [
             'base/diskcache_win32.cc',
@@ -424,6 +445,21 @@
                 '-framework CoreVideo',
                 '-framework OpenGL',
                 '-framework QTKit',
+              ],
+            },
+          },
+        }],
+        ['OS=="ios"', {
+          'sources': [
+	    'media/devices/dummydevicemanager.cc',
+          ],
+          'link_settings': {
+            'xcode_settings': {
+              'OTHER_LDFLAGS': [
+                '-framework Cocoa',
+                '-framework CoreAudio',
+                '-framework CoreVideo',
+                '-framework OpenGL',
               ],
             },
           },
