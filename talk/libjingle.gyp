@@ -369,21 +369,7 @@
         'media/base/videocapturer.cc',
         'media/base/videocommon.cc',
         'media/base/videoframe.cc',
-        'media/devices/devicemanager.cc',
         'media/devices/filevideocapturer.cc',
-        'media/webrtc/webrtcpassthroughrender.cc',
-        'media/webrtc/webrtcpassthroughrender.h',
-        'media/webrtc/webrtcvideocapturer.cc',
-        'media/webrtc/webrtcvideocapturer.h',
-        'media/webrtc/webrtcvideoengine.cc',
-        'media/webrtc/webrtcvideoengine.h',
-        'media/webrtc/webrtcvideoframe.cc',
-        'media/webrtc/webrtcvideoframe.h',
-        'media/webrtc/webrtcvie.h',
-        'media/webrtc/webrtcvoe.h',
-        'media/webrtc/webrtcvoiceengine.cc',
-        'media/webrtc/webrtcvoiceengine.h',
-        'media/webrtc/webrtccommon.h',
       ],
       'conditions': [
         ['OS=="linux"', {
@@ -393,6 +379,7 @@
             'media/devices/linuxdeviceinfo.cc',
             'media/devices/linuxdevicemanager.cc',
             'media/devices/v4llookup.cc',
+        	'media/devices/devicemanager.cc',
           ],
           'include_dirs': [
             'third_party/libudev'
@@ -406,8 +393,37 @@
             '-lX11',
           ],
         }],
+        ['OS=="android"', {
+          'sources': [
+            'media/devices/libudevsymboltable.cc',
+            'media/devices/linuxdeviceinfo.cc',
+            'media/devices/dummydevicemanager.cc',
+          ],
+          'include_dirs': [
+            'third_party/libudev'
+          ],
+        }],
+        # this should have a USE_WEBRTC check instead.
+        ['OS != "android" and OS != "ANDROID"', { 
+          'sources': [
+	        'media/webrtc/webrtcpassthroughrender.cc',
+	        #'media/webrtc/webrtcpassthroughrender.h',
+	        'media/webrtc/webrtcvideocapturer.cc',
+	        #'media/webrtc/webrtcvideocapturer.h',
+	        'media/webrtc/webrtcvideoengine.cc',
+	        #'media/webrtc/webrtcvideoengine.h',
+	        'media/webrtc/webrtcvideoframe.cc',
+	        #'media/webrtc/webrtcvideoframe.h',
+	        #'media/webrtc/webrtcvie.h',
+	        #'media/webrtc/webrtcvoe.h',
+	        'media/webrtc/webrtcvoiceengine.cc',
+	        #'media/webrtc/webrtcvoiceengine.h',
+	        #'media/webrtc/webrtccommon.h',
+          ],
+        }],
         ['OS=="win"', {
           'sources': [
+        	'media/devices/devicemanager.cc',
             'media/devices/gdivideorenderer.cc',
             'media/devices/win32deviceinfo.cc',
             'media/devices/win32devicemanager.cc',
@@ -425,6 +441,7 @@
         }],
         ['OS=="mac"', {
           'sources': [
+        	'media/devices/devicemanager.cc',
             'media/devices/carbonvideorenderer.cc',
             'media/devices/macdeviceinfo.cc',
             'media/devices/macdevicemanager.cc',
@@ -451,7 +468,7 @@
         }],
         ['OS=="ios"', {
           'sources': [
-	    'media/devices/dummydevicemanager.cc',
+	    	'media/devices/dummydevicemanager.cc',
           ],
           'link_settings': {
             'xcode_settings': {

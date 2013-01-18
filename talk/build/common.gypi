@@ -55,12 +55,12 @@
       # TODO(eric): enable HAVE_NSS_SSL_H and SSL_USE_NSS once they are ready.
       # 'HAVE_NSS_SSL_H=1',
       'HAVE_SRTP',
-      'HAVE_WEBRTC_VIDEO',
-      'HAVE_WEBRTC_VOICE',
+      #'HAVE_WEBRTC_VIDEO',
+      #'HAVE_WEBRTC_VOICE',
       # 'SSL_USE_NSS',
       # TODO(ronghuawu): Remove this once libjingle is updated to use the new
       # webrtc.
-      'USE_WEBRTC_DEV_BRANCH',
+      #'USE_WEBRTC_DEV_BRANCH',
     ],
     'conditions': [
       ['OS=="linux"', {
@@ -81,6 +81,11 @@
       ['OS=="mac"', {
         'defines': [
           'OSX',
+        ],
+      }],
+      ['OS=="android"', {
+        'defines': [
+          'OS=POSIX',
         ],
       }],
       ['os_posix==1', {

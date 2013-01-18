@@ -34,6 +34,7 @@
         'libjingle.gyp:*',  
         'libjingle_examples.gyp:*',  
         'libjingle_tests.gyp:*',  
+        '../../../P2PCommon/P2PCommonLib.gyp:*',
       ],
     },
   ],
